@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v[3.1.7]
+### Fixed
+fixed bug new chall in list challenges
+
 ## v[3.1.6]
 ### Fixed
 fixed bug dynamic score not triger in submit challenge.

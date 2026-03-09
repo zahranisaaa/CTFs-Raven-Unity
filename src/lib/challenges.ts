@@ -46,16 +46,6 @@ export async function getChallenges(
     if (error) throw new Error(error.message);
     if (!challenges) return [];
 
-    // 🔹 Ambil logs first blood dari RPC
-    const notifications = (await getLogs(500, 0)) as any[];
-
-    // Cuma ambil yang log_type = first_blood
-    const fbIds = new Set(
-      notifications
-        .filter((n) => n.log_type === 'first_blood')
-        .map((n) => n.log_challenge_id)
-    );
-
     // 🔹 Cek solved user (optional)
     let solvedIds = new Set<string>();
     if (userId) {
@@ -70,14 +60,16 @@ export async function getChallenges(
     return challenges.map(ch => {
       const createdAt = new Date(ch.created_at);
       const isRecentlyCreated = (Date.now() - createdAt.getTime()) < 24 * 60 * 60 * 1000;
-      const hasFirstBlood = fbIds.has(ch.id);
+      // Use total_solves to determine first blood instead of get_logs RPC
+      // which is limited to 500 rows and excludes ended events.
+      const hasFirstBlood = (ch.total_solves || 0) > 0;
 
       return {
         ...ch,
         is_solved: solvedIds.has(ch.id),
         has_first_blood: hasFirstBlood,
         is_recently_created: isRecentlyCreated,
-        is_new: isRecentlyCreated || !hasFirstBlood,
+        is_new: isRecentlyCreated && !hasFirstBlood,
         total_solves: ch.total_solves || 0,
         is_maintenance: ch.is_maintenance ?? false,
       };
@@ -121,13 +113,6 @@ export async function getChallengesList(
     if (error) throw new Error(error.message)
     if (!challenges) return []
 
-    const notifications = (await getLogs(500, 0)) as any[]
-    const fbIds = new Set(
-      notifications
-        .filter((n) => n.log_type === 'first_blood')
-        .map((n) => n.log_challenge_id)
-    )
-
     let solvedIds = new Set<string>()
     if (userId) {
       const { data: solves } = await supabase
@@ -141,7 +126,9 @@ export async function getChallengesList(
     return (challenges as any[]).map((ch) => {
       const createdAt = new Date(ch.created_at)
       const isRecentlyCreated = Date.now() - createdAt.getTime() < 24 * 60 * 60 * 1000
-      const hasFirstBlood = fbIds.has(ch.id)
+      // Use total_solves to determine first blood instead of get_logs RPC
+      // which is limited to 500 rows and excludes ended events.
+      const hasFirstBlood = (ch.total_solves || 0) > 0
 
       return {
         // lightweight fields from DB
@@ -158,7 +145,7 @@ export async function getChallengesList(
         is_solved: solvedIds.has(ch.id),
         has_first_blood: hasFirstBlood,
         is_recently_created: isRecentlyCreated,
-        is_new: isRecentlyCreated || !hasFirstBlood,
+        is_new: isRecentlyCreated && !hasFirstBlood,
         total_solves: ch.total_solves || 0,
         is_maintenance: ch.is_maintenance ?? false,
       }
