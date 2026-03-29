@@ -32,24 +32,9 @@ function DiscordIcon({
 
 const CONTRIBUTORS = [
   "@ariafatah0711",
-  // "@GZTimeWalker",
-  // "@hez2010",
-  // "@GrakePch",
-  //   "@Hanmur",
-  //   "@KPwnZ",
-  //   "@kengwang",
-  //   "@idawnlight",
-  //   "@Konano",
-  //   "@YanWQ-monad",
-  //   "@Ad-Bean",
-  //   "@Reverier-Xu",
-  //   "@TonyCrane",
-  //   "@mcyydscc",
-  //   "@cyc4188",
-  //   "@Zeroc0077",
-  //   "@weyung",
-  //   "@happybear1234",
-  //   "@xfoxfu",
+  "@rev3x",
+  "Mayleneee",
+  "Kapten_Joy",
 ];
 
 function fillContributors(list: string[], minLength = 14) {
