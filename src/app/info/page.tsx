@@ -1,7 +1,7 @@
 // Bersihkan username dan ulang sampai minimal panjang
 const CONTRIBUTORS = [
   "@ariafatah0711",
-  "@rev3x",
+  "@Rev3x1n",
   "@mayleneee01",
   "@Kapten_Joy",
 ];
