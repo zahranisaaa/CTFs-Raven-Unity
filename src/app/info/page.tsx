@@ -2,8 +2,8 @@
 const CONTRIBUTORS = [
   "@ariafatah0711",
   "@rev3x",
-  "Mayleneee",
-  "Kapten_Joy",
+  "@mayleneee01",
+  "@Kapten_Joy",
 ];
 
 // hapus @
