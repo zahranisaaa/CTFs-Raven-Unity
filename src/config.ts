@@ -1,22 +1,18 @@
 export const APP = {
-  shortName: 'FGTE',
-  fullName: 'CTFS Platform',
+  shortName: 'RAVEN',
+  fullName: 'CTFS RAVEN UNITY',
   description: 'Aplikasi CTF minimalis dengan Next.js dan Supabase',
-  flagFormat: 'FGTE{your_flag_here}',
+  flagFormat: 'RAVEN{your_flag_here}',
   year: new Date().getFullYear(),
 
   challengeCategories: [
-    'Intro',
     'Osint',
     'Crypto',
     'Forensics',
-    'Stegnography',
     'Misc',
     'Web',
     'Reverse',
-    'Pwn',
-    'Boot To Root',
-    'Network'
+    'Pwn'
   ],
   links: {
     github: 'https://github.com/ariafatah0711/ctfs',

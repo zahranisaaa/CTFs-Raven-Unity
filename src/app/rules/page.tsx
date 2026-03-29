@@ -116,10 +116,6 @@ export default function RulesPage() {
           </div>
         </motion.div>
 
-        <p className="text-gray-50 dark:text-gray-900">
-          RkdURXtZb3VfSGF2ZV9BY2NlcHRlZF9BbGxfUnVsZXNfQW5kX0V0aGljc30=
-        </p>
-
         <div className="w-full max-w-3xl mt-2 flex justify-center">
           <Button asChild className="bg-orange-600 text-white hover:bg-orange-700 px-4 py-2 rounded-lg shadow text-sm">
             <a href="/">Back to Home</a>
