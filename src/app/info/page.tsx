@@ -6,7 +6,6 @@ import { useState } from "react";
 
 // Daftar contributor
 const CONTRIBUTORS = [
-  "@ariafatah0711",
   "@Rev3x1n",
   "@mayleneee01",
   "@Kapten_Joy",
